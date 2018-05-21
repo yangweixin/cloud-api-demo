@@ -1,0 +1,13 @@
+spring.application.name: cloud-api-demo
+
+server.port: 7200
+
+eureka:
+  client:
+    service-url:
+      defaultZone:
+#          http://young:123456@local1:7001/eureka/,http://young:123456@local2:7002/eureka/
+          http://young:123456@localhost:7000/eureka/
+
+
+
