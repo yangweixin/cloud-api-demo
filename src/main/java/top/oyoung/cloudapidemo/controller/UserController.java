@@ -4,7 +4,8 @@ package top.oyoung.cloudapidemo.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
+import top.oyoung.cloudapidemo.entity.remote.UserEntity;
+import top.oyoung.cloudapidemo.service.remote.UserService;
 
 import javax.annotation.Resource;
 
@@ -13,10 +14,21 @@ import javax.annotation.Resource;
 public class UserController {
 
     @Resource
-    private RestTemplate restTemplate;
+    private UserService userService;
 
-    @GetMapping("")
+    @GetMapping("id")
     public String getUserMessage(){
-        return restTemplate.getForEntity("http://CLOUD-SERVICE-DEMO/user", String.class).getBody();
+        return userService.sayHi(1L);
+    }
+
+    @GetMapping("area")
+    public String getUserMessage1(){
+        return userService.sayHi1(1L, "shenzhen");
+    }
+
+    @GetMapping("entity")
+    public String getUserMessage2(){
+        UserEntity user = new UserEntity("young", "male");
+        return userService.sayHi2(user);
     }
 }
