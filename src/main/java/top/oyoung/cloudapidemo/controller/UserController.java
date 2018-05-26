@@ -1,6 +1,7 @@
 package top.oyoung.cloudapidemo.controller;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,8 @@ public class UserController {
 
     @Resource
     private UserService userService;
+    @Value("${mark}")
+    private String mark;
 
     @GetMapping("id")
     public String getUserMessage(){
@@ -30,5 +33,10 @@ public class UserController {
     public String getUserMessage2(){
         UserEntity user = new UserEntity("young", "male");
         return userService.sayHi2(user);
+    }
+
+    @GetMapping("hello")
+    public String hello(){
+        return "mark: "+ mark ;
     }
 }

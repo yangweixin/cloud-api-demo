@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      label: label-test
+      profile: prod
+      uri: http://localhost:7400/
+      username: young
+      password: 123456
