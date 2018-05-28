@@ -1,8 +1,39 @@
+spring.application.name: cloud-api-demo
+
+server.port: 7200
+
+#服务注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone:
+        http://young:123456@localhost:7000/eureka/
+
 spring:
   cloud:
     config:
-      label: label-test
-      profile: prod
-      uri: http://localhost:7400/
+      discovery:
+        enabled: true
+        service-id: CLOUD-CONFIG-SERVER
+#      uri: http://localhost:7400/
+      label: label_test
+      profile: dev
       username: young
       password: 123456
+      #快速启动
+      fail-fast: true
+      #重试
+      retry:
+        initial-interval: 1000
+        multiplier: 1.5
+        max-interval: 3000
+        max-attempts: 10
+
+management:
+  endpoint:
+  endpoints:
+    web:
+      exposure:
+        include: ["refresh"]
+
+
