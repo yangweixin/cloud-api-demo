@@ -16,7 +16,7 @@ spring:
         enabled: true
         service-id: CLOUD-CONFIG-SERVER
 #      uri: http://localhost:7400/
-      label: label_test
+      label: master
       profile: dev
       username: young
       password: 123456
@@ -29,11 +29,19 @@ spring:
         max-interval: 3000
         max-attempts: 10
 
+  # config rabbit bus
+  rabbitmq:
+    host: 47.106.119.128
+    port: 5672
+    username: young
+    password: 123456
+
+# open actutor endpoints
 management:
-  endpoint:
   endpoints:
     web:
       exposure:
-        include: ["refresh"]
+        include: "*"
+
 
 
